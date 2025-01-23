@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[9234],{9234:(e,t,n)=>{n.r(t),n.d(t,{default:()=>c});const s={name:"MyObjects"};const c=(0,n(1900).Z)(s,(function(){var e=this,t=e.$createElement;return(e._self._c||t)("div",[e._v("Мої об'єкти будуть додані пізніше")])}),[],!1,null,"34a36be0",null).exports}}]);

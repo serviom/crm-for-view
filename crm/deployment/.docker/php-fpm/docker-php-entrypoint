@@ -1,0 +1,41 @@
+#!/bin/sh
+prepare () {
+cd $1
+if [ ! -e .env ]; then 
+   echo "Coping .env.example on .env, because .env absent in laravel dir"
+   cp -f .env.example .env; 
+fi;
+
+#chown www-data -R /var/www/speed-crm/laravel /var/www/speed-crm/public
+
+if [ ! -d vendor ]; then
+   echo "Not exist vendor dir in laravel dir"
+   composer update;
+   php artisan key:generate; 
+   php artisan migrate;
+   composer dump-autoload; 
+   php artisan db:seed;
+   php artisan jwt:secret;
+fi;
+
+php artisan config:clear;
+php artisan cache:clear;
+php artisan view:clear;
+php artisan route:clear;
+php artisan migrate
+php artisan db:seed
+}
+
+set -x
+prepare "/var/www/speed-crm/laravel/"
+set +x
+
+cd /var/www/speed-crm/public/
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+   set -- apache2-foreground "$@"
+fi
+
+while true; do  /usr/local/bin/php /var/www/speed-crm/laravel/artisan schedule:run 2>&1; sleep 59; done &
+
+exec "$@"

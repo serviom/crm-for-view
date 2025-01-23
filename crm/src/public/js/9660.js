@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[9660],{9660:(e,t,n)=>{n.r(t),n.d(t,{default:()=>c});const s={name:"MyObjects"};const c=(0,n(1900).Z)(s,(function(){var e=this,t=e.$createElement;return(e._self._c||t)("div",[e._v("Лог дій буде доданий пізніше")])}),[],!1,null,"56a6165c",null).exports}}]);
